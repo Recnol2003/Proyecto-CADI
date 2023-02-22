@@ -1,0 +1,21 @@
+{% extends "CADIApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="contenedorFormulario">
+
+    {% if "valido" in request.GET %}
+
+        <p style="color: black; text-align: center;">Información enviada satisfactoriamente, ¡gracias!</p>
+
+    {% endif %}
+
+    <form action="" method="POST" style="text-align: center;"> {% csrf_token %}
+        <table style="margin: 20px auto;"><p>{{miformulario.as_table}}</p> </table>
+        <input type="submit" value="Enviar" style="width:150px">
+    </form>
+</div>
+
+{% endblock %}

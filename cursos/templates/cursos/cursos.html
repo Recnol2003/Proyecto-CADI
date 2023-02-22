@@ -1,0 +1,54 @@
+{% extends "CADIApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+  <div style="float: right;">
+
+    {% if request.user.is_authenticated %}
+
+      {% include "carro/widget.html" %}
+    
+    {% else %}
+
+      <div class="alert alert-danger text-center">Login para inscribirse</div>
+
+    {% endif %}
+  
+  </div>
+
+  <div class="row">
+
+    {% for curso in cursos %}
+
+      <div class="col-md-3">
+
+        <div class="card" style="width: 100%; margin: 5px 5px;">
+
+          <img src="{{curso.imagen.url}}" class="card-img-top">
+
+          <div class="card-body" style="text-align: center;">
+
+            <h7 class="card-title">{{curso.nombre}}</h7>
+
+            <p class="card-text">{{curso.precio}}&nbsp;$</p>
+
+          </div>
+
+          <div class="card-footer text-center">
+
+            <a href="{% url 'carro:agregar' curso.id%}" class="btn btn-success">Inscribirse</a>
+
+          </div>
+
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}
